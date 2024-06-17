@@ -8,7 +8,7 @@ from vinos import DO_VINOS
 
 
 class Vinos(CTk):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self.geometry(f"{WIDTH_WINDOW}x{HEIGHT_WINDOW}")
         self.title("Vinos Ibericos")
@@ -18,7 +18,7 @@ class Vinos(CTk):
         self._display_vinos_buttons()
         self.map = self._display_map_widget()
 
-    def _display_vinos_buttons(self):
+    def _display_vinos_buttons(self) -> None:
         red = "#f5a6a8"
         white = "#f0d795"
         for k, v in DO_VINOS.items():
@@ -27,7 +27,7 @@ class Vinos(CTk):
                       command=lambda x=v[0][0], y=v[0][1], color=v[1]: self._display_marker((x, y), color),
                       fg_color=fg_button_color, text_color="black", hover_color="yellow").pack(padx=5, pady=10)
 
-    def _display_map_widget(self):
+    def _display_map_widget(self) -> TkinterMapView:
         map_widget = TkinterMapView(self, width=1100, height=1200, corner_radius=1)
         map_widget.set_position(deg_x=START_X, deg_y=-START_Y)
         map_widget.set_zoom(5)
