@@ -1,28 +1,34 @@
-from customtkinter import CTk, CTkButton, CTkLabel, CTkFrame  # type: ignore
 from PIL.ImageTk import PhotoImage
 from PIL import Image
+
+from customtkinter import CTk, CTkButton, CTkLabel, CTkFrame  # type: ignore
 from tkintermapview import TkinterMapView  # type: ignore
 
-from settings import WIDTH_WINDOW, HEIGHT_WINDOW, START_X, START_Y
+from settings import WIDTH_WINDOW, HEIGHT_WINDOW, START_X, START_Y, RED_BUTTON, WHITE_BUTTON, TITLE, \
+    WIDTH_LEFT_CONTAINER, HEIGHT_LEFT_CONTAINER, FG_COLOR_LEFT_CONTAINER
 from vinos import DO_VINOS
 
 
 class Vinos(CTk):
     def __init__(self) -> None:
         super().__init__()
-        self.geometry(f"{WIDTH_WINDOW}x{HEIGHT_WINDOW}")
-        self.title("Vinos Ibericos")
-        CTkLabel(self, text="Vinos Ibericos").pack()
-        self.left_container = CTkFrame(self, width=100, height=1200, fg_color="white")
-        self.left_container.pack(side="left", padx=50)
+        self._display_window(WIDTH_WINDOW, HEIGHT_WINDOW, TITLE)
+        self._display_left_container(WIDTH_LEFT_CONTAINER, HEIGHT_LEFT_CONTAINER, FG_COLOR_LEFT_CONTAINER)
         self._display_vinos_buttons()
         self.map = self._display_map_widget()
 
+    def _display_window(self, width: str, height: str, title: str) -> None:
+        self.geometry(f"{width}x{height}")
+        self.title(title)
+        CTkLabel(self, text=TITLE).pack()
+
+    def _display_left_container(self, width: int, height: int, fg_color: str) -> None:
+        self.left_container = CTkFrame(self, width=width, height=height, fg_color=fg_color)
+        self.left_container.pack(side="left", padx=50)
+
     def _display_vinos_buttons(self) -> None:
-        red = "#f5a6a8"
-        white = "#f0d795"
         for k, v in DO_VINOS.items():
-            fg_button_color = white if v[1] == "Blanco" else red
+            fg_button_color = WHITE_BUTTON if v[1] == "Blanco" else RED_BUTTON
             CTkButton(self.left_container, text=k,
                       command=lambda x=v[0][0], y=v[0][1], color=v[1]: self._display_marker((x, y), color),
                       fg_color=fg_button_color, text_color="black", hover_color="yellow").pack(padx=5, pady=10)
@@ -30,7 +36,7 @@ class Vinos(CTk):
     def _display_map_widget(self) -> TkinterMapView:
         map_widget = TkinterMapView(self, width=1100, height=1200, corner_radius=1)
         map_widget.set_position(deg_x=START_X, deg_y=-START_Y)
-        map_widget.set_zoom(5)
+        map_widget.set_zoom(6)
         map_widget.pack()
         return map_widget
 
