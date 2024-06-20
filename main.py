@@ -29,8 +29,7 @@ class Vinos(CTk):
     def _display_vinos_buttons(self) -> None:
         for k, v in DO_VINOS.items():
             fg_button_color = WHITE_BUTTON if v[1] == "Blanco" else RED_BUTTON
-            CTkButton(self.left_container, text=k,
-                      command=lambda x=v[0][0], y=v[0][1], color=v[1]: self._display_marker((x, y), color),
+            CTkButton(self.left_container, text=k, command=lambda data=v: self._display_marker(data),
                       fg_color=fg_button_color, text_color="black", hover_color="yellow").pack(padx=5, pady=10)
 
     def _display_map_widget(self) -> TkinterMapView:
@@ -40,9 +39,9 @@ class Vinos(CTk):
         map_widget.pack()
         return map_widget
 
-    def _display_marker(self, coord: tuple[float], color: str):
-        photo_image = PhotoImage(image=Image.open(f"assets/{color}.png"))
-        self.map.set_marker(*coord, icon=photo_image)
+    def _display_marker(self, data: tuple):
+        photo_image = PhotoImage(image=Image.open(f"assets/{data[1]}.png"))
+        self.map.set_marker(data[0][0], data[0][1], icon=photo_image)
 
 
 if __name__ == "__main__":
