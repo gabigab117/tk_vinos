@@ -35,8 +35,7 @@ class Vinos(CTk):
         return map_widget
 
     def _display_marker(self, coord: tuple[float], color: str):
-        photo_image = PhotoImage(
-            image=Image.open("assets/blanco.png") if color == "Blanco" else Image.open("assets/tinto.png"))
+        photo_image = PhotoImage(image=Image.open(f"assets/{color}.png"))
         self.map.set_marker(*coord, icon=photo_image)
 
 
