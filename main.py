@@ -12,6 +12,7 @@ from vinos import DO_VINOS
 class Vinos(CTk):
     def __init__(self) -> None:
         super().__init__()
+
         self._display_window(WIDTH_WINDOW, HEIGHT_WINDOW, TITLE)
         self._display_left_container(WIDTH_LEFT_CONTAINER, HEIGHT_LEFT_CONTAINER, FG_COLOR_LEFT_CONTAINER)
         self._display_vinos_buttons()
