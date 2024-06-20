@@ -39,7 +39,7 @@ class Vinos(CTk):
         map_widget.pack()
         return map_widget
 
-    def _display_marker(self, data: tuple):
+    def _display_marker(self, data: tuple) -> None:
         photo_image = PhotoImage(image=Image.open(f"assets/{data[1]}.png"))
         self.map.set_marker(data[0][0], data[0][1], icon=photo_image)
 
