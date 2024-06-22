@@ -1,0 +1,14 @@
+class AppData:
+    TITLE = "Vinos Ibericos"
+    HEIGHT = "1200"
+    WIDTH = "1200"
+
+    FG_COLOR_LEFT_CONTAINER = "white"
+    HEIGHT_LEFT_CONTAINER = 1200
+    WIDTH_LEFT_CONTAINER = 100
+
+    RED_BUTTON = "#f5a6a8"
+    WHITE_BUTTON = "#f0d795"
+
+    START_X = 41.4129785
+    START_Y = 2.17403
