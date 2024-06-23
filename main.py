@@ -1,8 +1,8 @@
 from PIL.ImageTk import PhotoImage
 from PIL import Image
 
-from customtkinter import CTk, CTkButton, CTkLabel, CTkFrame  # type: ignore
-from tkintermapview import TkinterMapView  # type: ignore
+from customtkinter import CTk, CTkButton, CTkLabel, CTkFrame
+from tkintermapview import TkinterMapView
 
 from data import AppData
 from vinos import DO_VINOS
